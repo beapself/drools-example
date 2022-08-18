@@ -1,0 +1,23 @@
+package com.drools.example.rules
+
+import com.drools.example.rules.bo.RuleParamBo;
+import com.drools.example.rules.bo.RuleResultBo;
+import java.util.List
+import com.drools.example.rules.DroolsAction
+import com.drools.example.rules.RuleExecuteAction;
+
+global RuleResultBo ruleResultBo
+
+rule "TEST"
+    when
+        /* 条件匹配
+           age：年龄大于10岁
+           sex：性别包含男、女
+        */
+        $c1 : RuleParamBo(age > 10,sex in (1,2) )
+    then
+        ruleResultBo.setRuleParamBo($c1);
+        ruleResultBo.buildParam($c1);
+        List<Object> curMatchFacts = DroolsAction.listCurrentMatchFacts(drools);
+        RuleExecuteAction.runActions(curMatchFacts,ruleResultBo);
+end
