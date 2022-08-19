@@ -14,6 +14,8 @@ public class RuleResultBo {
      */
     private Integer ruleCode;
 
+    private String remark;
+
 
     public RuleResultBo() {
         this.ruleCode = -1;
@@ -35,6 +37,13 @@ public class RuleResultBo {
         this.ruleParamBo = ruleParamBo;
     }
 
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
 
     /**
      *构建参数
@@ -42,10 +51,6 @@ public class RuleResultBo {
      */
     public void buildParam(RuleParamBo ruleParamBo) {
         log.info("构建参数");
-        if (1 == ruleParamBo.getSex()) {
-            // todo
-        } else{
-            // todo
-        }
+        remark = "构建参数，年龄为"+ruleParamBo.getAge();
     }
 }
